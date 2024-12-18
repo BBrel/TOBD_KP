@@ -16,7 +16,7 @@ const App = () => {
             const formData = new FormData();
             formData.append("file", file);
 
-            const response = await fetch("/api/files/upload", {
+            const response = await fetch("http://localhost:8000/api/files/upload", {
                 method: "POST",
                 body: formData,
             });
@@ -33,9 +33,12 @@ const App = () => {
     // Сохранение файла
     const handleSave = async () => {
 
-        const response = await fetch("/api/files/save", {
+        const response = await fetch("http://localhost:8000/api/files/save", {
             method: "POST",
             body: JSON.stringify({data}),
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
 
         if (response.ok) {
